@@ -9,10 +9,10 @@
 
 | 파일 | 설명 |
 |---|---|
-| `breast_cancer_wisconsin.csv` | 수행평가용 CSV (헤더 포함) |
-| `load_data.py` | 데이터 불러오기 예제 코드 (Python) |
-| `load_data.ipynb` | 데이터 불러오기 예제 노트북 (Colab/Jupyter) |
-| `wdbc.data`, `wdbc.names` | UCI 원본 데이터와 원본 설명서 |
+| `breast_cancer_wisconsin.csv` | 수행평가용 데이터 (CSV, 헤더 포함) |
+| `README.md` | 데이터 및 속성 안내 (이 문서) |
+
+> 수행평가는 **Google Colab**에서 진행합니다. 아래 **데이터 불러오기** 코드로 데이터를 불러온 뒤, 이후 과정은 스스로 해결해 보세요.
 
 ## 데이터 개요
 
@@ -58,8 +58,6 @@
 | `symmetry` | 대칭성 | 세포핵 모양의 대칭 정도 |
 | `fractal_dimension` | 프랙탈 차원 | 테두리의 복잡도 ("해안선 근사" − 1) |
 
-> 일반적으로 악성 종양의 세포핵은 **더 크고(radius, area ↑), 모양이 불규칙하며(concavity, concave_points ↑)**, 대칭성이 떨어지는 경향이 있습니다.
-
 ### 전체 30개 특성 열 목록
 
 | 번호 | 평균 (`_mean`) | 표준오차 (`_se`) | 최악값 (`_worst`) |
@@ -76,11 +74,10 @@
 | 10 | `fractal_dimension_mean` | `fractal_dimension_se` | `fractal_dimension_worst` |
 
 모든 특성 값은 실수이며, 유효숫자 4자리로 기록되어 있습니다.
-특성마다 값의 범위가 크게 다르므로(예: `area_mean`은 수백~수천, `smoothness_mean`은 0.05~0.16), 거리 기반 모델(KNN 등)을 사용할 때는 **표준화(스케일링)** 를 고려하세요.
 
-## 데이터 불러오기
+## 데이터 불러오기 (Google Colab)
 
-### GitHub에서 바로 불러오기 (Colab 추천)
+Colab 새 노트북의 코드 셀에 아래 코드를 붙여넣고 실행하세요.
 
 ```python
 import pandas as pd
@@ -92,19 +89,4 @@ print(df.shape)       # (569, 32)
 df.head()
 ```
 
-### 내 컴퓨터에 내려받은 파일 불러오기
-
-```python
-import pandas as pd
-
-df = pd.read_csv("breast_cancer_wisconsin.csv")
-```
-
-### 특성(X)과 정답(y) 나누기
-
-```python
-X = df.drop(columns=["id", "diagnosis"])          # 30개 특성
-y = df["diagnosis"].map({"M": 1, "B": 0})         # 악성=1, 양성=0
-```
-
-더 자세한 예제는 `load_data.py` 또는 `load_data.ipynb`를 참고하세요.
+이후 과정은 스스로 해결해 보세요.
